@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-client-deployment
+  template:
+    metadata:
+      labels:
+        app: stock-client-deployment
+    spec:
+      containers:
+      - name: stock-client-deployment
+        image: deepakdocker04/stockclient:0.0.1.RELEASE
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

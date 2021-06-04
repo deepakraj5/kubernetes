@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-server-deployment
+  template:
+    metadata:
+      labels:
+        app: stock-server-deployment
+    spec:
+      containers:
+      - name: stock-server-deployment
+        image: deepakdocker04/stockserver:0.0.1.RELEASE
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGODB_URL
+          valueFrom:
+            secretKeyRef:
+              name: stock-server-secret
+              key: MONGODB_URL
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: stock-server-secret
+              key: JWT_SECRET_KEY
+        - name: GMAIL_ACCOUNT
+          valueFrom:
+            secretKeyRef:
+              name: stock-server-secret
+              key: GMAIL_ACCOUNT
+        - name: GMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: stock-server-secret
+              key: GMAIL_PASSWORD
+        - name: PORT
+          valueFrom:
+            secretKeyRef:
+              name: stock-server-secret
+              key: PORT
