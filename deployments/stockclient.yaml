@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: stock-client-deployment
-        image: deepakdocker04/stockclient:0.0.1.RELEASE
+        image: deepakdocker04/stockclient:0.0.2.RELEASE
         imagePullPolicy: Always
         ports:
         - containerPort: 80
